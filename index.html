@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You My Love❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: black;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Floating hearts background */
+    .heart {
+        position: absolute;
+        bottom: -20px;
+        color: #ff4d6d;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0;
+        }
+        10% { opacity: 0.8; }
+        100% {
+            transform: translateY(-110vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    .container {
+        max-width: 90%;
+        text-align: center;
+        font-size: 1.4rem;
+        line-height: 1.8;
+        z-index: 10;
+    }
+
+    .line {
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .highlight {
+        color: #ff4d6d;
+        font-weight: bold;
+    }
+
+    .buttons {
+        margin-top: 25px;
+        position: relative;
+        height: 120px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
+        color: white;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #noBtn {
+        background: #555;
+        color: white;
+        left: 50%;
+        top: 60px;
+        transform: translateX(-50%);
+    }
+
+    /* Bottom shy note */
+    .note {
+        position: fixed;
+        bottom: 15px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ffb3c1;
+        font-style: italic;
+        opacity: 0.9;
+        z-index: 20;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="line">Hey Palak Baby ❤️…</div>
+    <div class="line">I just wanted to say something 💭</div>
+    <div class="line">From random talks…</div>
+    <div class="line">to unplanned smiles…</div>
+    <div class="line">you slowly became</div>
+    <div class="line highlight">my favorite person ❤️</div>
+    <div class="line">And today…</div>
+    <div class="line">I just want to ask you one thing</div>
+    <div class="line highlight">Will you be my Valentine? 💘</div>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="yes()">YES 💖</button>
+        <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">NO 🙈</button>
+    </div>
+</div>
+
+<!-- Bottom text -->
+<div class="note">(NO is a bit shy 🙈 so don’t click it)</div>
+
+<script>
+    const lines = document.querySelectorAll('.line');
+    const noBtn = document.getElementById('noBtn');
+    let index = 0;
+
+    function showLines() {
+        if (index < lines.length) {
+            lines[index].style.opacity = 1;
+            index++;
+            setTimeout(showLines, 1200);
+        }
+    }
+    showLines();
+
+    function yes() {
+        document.body.innerHTML = `
+            <div style="
+                color:white;
+                font-size:2rem;
+                text-align:center;
+                font-family:Segoe UI;
+            ">
+                You just made my heart smile 😍❤️<br><br>
+                I knew you would say yes!!!<br><br>
+                Happy Valentine’s Baby Love 💕<br><br>
+                I love you so so so much meri jaan ❤️❤️❤️❤️❤️❤️❤️❤️
+            </div>
+        `;
+    }
+
+    function moveNo() {
+        const x = Math.random() * 300 - 150;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    /* Create floating hearts */
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+
+    setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
